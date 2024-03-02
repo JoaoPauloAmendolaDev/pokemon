@@ -10,30 +10,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Pokemon {
-  id          Int               @id @default(autoincrement())
-  name        String            
-  pokedexId   Int               @unique
-  height      Float        
-  weight      Float        
-  PokemonTeam PokemonTeam[]
+model pokemon {
+  id            Int               @id @default(autoincrement())
+  name          String            
+  pokedex_id    Int               @unique
+  height        Float        
+  weight        Float        
+  PokemonTeam   pokemon_team[]
 
-  @@index([pokedexId])
+  @@index([pokedex_id])
 }
 
-model PokemonTeam {
-  id        Int                 @id @default(autoincrement())
-  pokemonId Int                 
-  teamId    Int                 
-  Pokemon   Pokemon             @relation(fields: [pokemonId], references: [pokedexId])
-  Team      Team                @relation(fields: [teamId], references: [id])
-
-  @@index([pokemonId])
-  @@index([teamId])
-}
-
-model Team {
+model team {
   id          Int               @id @default(autoincrement())
   username    String            @unique
-  PokemonTeam PokemonTeam[]
+  pokemons    pokemon_team[]
 }
+
+
+model pokemon_team {
+  id          Int                 @id @default(autoincrement())
+  pokemon_id  Int                 
+  team_id     Int                 
+  pokemon     pokemon             @relation(fields: [pokemon_id], references: [pokedex_id])
+  team        team                @relation(fields: [team_id], references: [id])
+
+  @@index([pokemon_id, team_id])
+}
+
