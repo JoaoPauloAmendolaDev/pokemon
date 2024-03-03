@@ -5,10 +5,18 @@ async function getTeamById(teamId: number) {
     where: {
       id: teamId,
     },
-    include: {
+    select: {
+      owner: true,
       pokemons: {
-        include: {
-          pokemon: true,
+        select: {
+          pokemon: {
+            select: {
+              pokedex_id: true,
+              name: true,
+              height: true,
+              weight: true,
+            },
+          },
         },
       },
     },
@@ -22,7 +30,7 @@ async function getAllTeams() {
     include: {
       pokemons: {
         include: {
-          pokemon: true
+          pokemon: true,
         },
       },
     },
