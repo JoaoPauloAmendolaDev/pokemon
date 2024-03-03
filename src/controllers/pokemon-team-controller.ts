@@ -5,10 +5,10 @@ import { NotFoundError } from '@/errors/not-found-error';
 import { ConflictError } from '@/errors/conflict-error';
 
 export async function pokemonTeamCreation(req: Request, res: Response) {
-  const { pokemons, owner } = req.body;
+  const { pokemons, user } = req.body;
 
   try {
-    let id = await createTeam(pokemons, owner);
+    let id = await createTeam(pokemons, user);
     return res.status(httpStatus.OK).json({ message: `Time de Pokémon criado com sucesso. id do time = ${id}` });
   } catch (error) {
     if (error instanceof NotFoundError) {

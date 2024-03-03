@@ -17,7 +17,7 @@ export async function getAllTeams() {
       acc[team.id.toString()] = { 
         owner: team.owner,
         pokemons: team.pokemons.map((pokemon_team) => ({
-          id: pokemon_team.pokemon.id,
+          id: pokemon_team.pokemon.pokedex_id,
           name: pokemon_team.pokemon.name,
           weight: pokemon_team.pokemon.weight,
           height: pokemon_team.pokemon.height,

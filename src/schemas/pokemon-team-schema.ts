@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 export const pokemonTeamCreationSchema = Joi.object({
-  owner: Joi.string()
+  user: Joi.string()
     .required()
     .trim()
     .regex(/^[A-Za-z]+(?: [A-Za-z]+)*$/) // Permitir nomes compostos e evitar números e caracteres especiais
