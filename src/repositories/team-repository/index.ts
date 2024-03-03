@@ -17,22 +17,35 @@ async function getTeamById(teamId: number) {
   return team;
 }
 
-async function create(username: string) {
-  return await prisma.team.create({
-    data: { username },
+async function getAllTeams() {
+  return await prisma.team.findMany({
+    include: {
+      pokemons: {
+        include: {
+          pokemon: true
+        },
+      },
+    },
   });
 }
 
-async function deleteById(id: number){
+async function create(owner: string) {
+  return await prisma.team.create({
+    data: { owner },
+  });
+}
+
+async function deleteById(id: number) {
   return await prisma.team.delete({
-    where: {id}
-  })
+    where: { id },
+  });
 }
 
 const teamRepository = {
   getTeamById,
+  getAllTeams,
   create,
-  deleteById
+  deleteById,
 };
 
 export default teamRepository;

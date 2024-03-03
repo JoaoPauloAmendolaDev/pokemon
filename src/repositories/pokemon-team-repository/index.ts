@@ -1,5 +1,5 @@
 import { prisma } from '@/config';
-import { pokemon_team } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 
 async function getById(id: number) {
   const pokemon = await prisma.pokemon_team.findFirst({
@@ -11,7 +11,7 @@ async function getById(id: number) {
   return pokemon;
 }
 
-async function saveMany(pokemon_team: pokemon_team[]) {
+async function saveMany(pokemon_team: Prisma.pokemon_teamUncheckedCreateInput[]) {
   await prisma.pokemon_team.createMany({
     data: pokemon_team,
   });

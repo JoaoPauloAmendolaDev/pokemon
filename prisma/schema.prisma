@@ -23,7 +23,7 @@ model pokemon {
 
 model team {
   id          Int               @id @default(autoincrement())
-  username    String            @unique
+  owner       String            @unique
   pokemons    pokemon_team[]
 }
 
