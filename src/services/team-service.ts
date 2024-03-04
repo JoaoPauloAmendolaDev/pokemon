@@ -11,9 +11,9 @@ export async function createUserTeam(owner: string) {
   }
 }
 
-export async function getOne(id: number) {
+export async function getOne(owner: string) {
   try {
-    let team = await teamRepository.getTeamById(id);
+    let team = await teamRepository.getTeamById(owner);
 
     let transformedPokemons = normalizePokemonList(team)
     return {
