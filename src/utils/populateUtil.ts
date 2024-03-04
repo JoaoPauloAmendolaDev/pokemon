@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import pokemonRepository from '@/repositories/pokemon-repository'; // Ajuste o caminho conforme necessário
+import pokemonRepository from '@/repositories/pokemon-repository'; 
 import Pokemon from '@/models/pokemon';
 import { NotFoundError } from '@/errors/not-found-error';
 
@@ -14,7 +14,6 @@ export async function fetchPokemonData(pokemonName: string) {
   const existingPokemon = await pokemonRepository.getByName(pokemonName);
 
   if (existingPokemon) {
-    console.log(`esse pokemon já existe localmente: ${existingPokemon.name}`);
     return existingPokemon.pokedex_id;
   } else {
     try {
