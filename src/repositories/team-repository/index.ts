@@ -1,9 +1,9 @@
 import { prisma } from '@/config';
 
-async function getTeamById(teamId: number) {
+async function getTeamById(owner: string) {
   const team = await prisma.team.findUnique({
     where: {
-      id: teamId,
+      owner,
     },
     select: {
       owner: true,

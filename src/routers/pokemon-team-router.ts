@@ -8,6 +8,6 @@ const pokemonTeamRouter = Router();
 
 pokemonTeamRouter.post('/', validateBody(pokemonTeamCreationSchema), pokemonTeamCreation);
 pokemonTeamRouter.get('/', getAll);
-pokemonTeamRouter.get('/:id', getOneTeam);
+pokemonTeamRouter.get('/:name', getOneTeam);
 
 export { pokemonTeamRouter };
